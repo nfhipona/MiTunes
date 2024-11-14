@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		088A11092CE595B600EC1002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11082CE595B600EC1002 /* AppDelegate.swift */; };
 		088A110B2CE595B600EC1002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A110A2CE595B600EC1002 /* SceneDelegate.swift */; };
-		088A110D2CE595B600EC1002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A110C2CE595B600EC1002 /* ViewController.swift */; };
+		088A110D2CE595B600EC1002 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A110C2CE595B600EC1002 /* MasterViewController.swift */; };
 		088A11102CE595B600EC1002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 088A110E2CE595B600EC1002 /* Main.storyboard */; };
 		088A11132CE595B600EC1002 /* MiTunes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 088A11112CE595B600EC1002 /* MiTunes.xcdatamodeld */; };
 		088A11152CE595B800EC1002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088A11142CE595B800EC1002 /* Assets.xcassets */; };
@@ -47,6 +47,10 @@
 		088A11652CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11642CE5AAAA00EC1002 /* iTunesMedia.swift */; };
 		088A11662CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11642CE5AAAA00EC1002 /* iTunesMedia.swift */; };
 		088A11672CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11642CE5AAAA00EC1002 /* iTunesMedia.swift */; };
+		08ADB60A2CE5C33E00205863 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08ADB6092CE5C33E00205863 /* CoreDataStack.swift */; };
+		08ADB60B2CE5C33E00205863 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08ADB6092CE5C33E00205863 /* CoreDataStack.swift */; };
+		08ADB60D2CE5C73800205863 /* MasterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08ADB60C2CE5C73800205863 /* MasterViewModel.swift */; };
+		08ADB60E2CE5C73800205863 /* MasterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08ADB60C2CE5C73800205863 /* MasterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +74,7 @@
 		088A11052CE595B600EC1002 /* MiTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		088A11082CE595B600EC1002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		088A110A2CE595B600EC1002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		088A110C2CE595B600EC1002 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		088A110C2CE595B600EC1002 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		088A110F2CE595B600EC1002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		088A11122CE595B600EC1002 /* MiTunes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MiTunes.xcdatamodel; sourceTree = "<group>"; };
 		088A11142CE595B800EC1002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 		088A115B2CE5A61B00EC1002 /* iTunesServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesServiceAPI.swift; sourceTree = "<group>"; };
 		088A11602CE5A9AC00EC1002 /* iTunesSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchResult.swift; sourceTree = "<group>"; };
 		088A11642CE5AAAA00EC1002 /* iTunesMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesMedia.swift; sourceTree = "<group>"; };
+		08ADB6092CE5C33E00205863 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		08ADB60C2CE5C73800205863 /* MasterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +153,8 @@
 				088A113B2CE5970F00EC1002 /* Configuration */,
 				088A11082CE595B600EC1002 /* AppDelegate.swift */,
 				088A110A2CE595B600EC1002 /* SceneDelegate.swift */,
-				088A110C2CE595B600EC1002 /* ViewController.swift */,
+				088A110C2CE595B600EC1002 /* MasterViewController.swift */,
+				08ADB60C2CE5C73800205863 /* MasterViewModel.swift */,
 				088A110E2CE595B600EC1002 /* Main.storyboard */,
 				088A11142CE595B800EC1002 /* Assets.xcassets */,
 				088A11162CE595B800EC1002 /* LaunchScreen.storyboard */,
@@ -198,6 +205,7 @@
 				088A11462CE59BE800EC1002 /* AppConfiguration.swift */,
 				088A115B2CE5A61B00EC1002 /* iTunesServiceAPI.swift */,
 				088A11562CE5A15600EC1002 /* API */,
+				08ADB6092CE5C33E00205863 /* CoreDataStack.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -357,12 +365,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				088A110D2CE595B600EC1002 /* ViewController.swift in Sources */,
+				08ADB60D2CE5C73800205863 /* MasterViewModel.swift in Sources */,
+				088A110D2CE595B600EC1002 /* MasterViewController.swift in Sources */,
 				088A11472CE59BE800EC1002 /* AppConfiguration.swift in Sources */,
 				088A11612CE5A9AC00EC1002 /* iTunesSearchResult.swift in Sources */,
 				088A11582CE5A16400EC1002 /* MiTunesAPIProtocol.swift in Sources */,
 				088A11532CE5A08D00EC1002 /* MiTunesAPI.swift in Sources */,
 				088A114F2CE59C7000EC1002 /* Utils+Ext.swift in Sources */,
+				08ADB60A2CE5C33E00205863 /* CoreDataStack.swift in Sources */,
 				088A11132CE595B600EC1002 /* MiTunes.xcdatamodeld in Sources */,
 				088A115C2CE5A61B00EC1002 /* iTunesServiceAPI.swift in Sources */,
 				088A11652CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */,
@@ -381,7 +391,9 @@
 				088A114D2CE59C4400EC1002 /* AppConfiguration.swift in Sources */,
 				088A11592CE5A16400EC1002 /* MiTunesAPIProtocol.swift in Sources */,
 				088A11232CE595B900EC1002 /* MiTunesTests.swift in Sources */,
+				08ADB60B2CE5C33E00205863 /* CoreDataStack.swift in Sources */,
 				088A11662CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */,
+				08ADB60E2CE5C73800205863 /* MasterViewModel.swift in Sources */,
 				088A115D2CE5A61B00EC1002 /* iTunesServiceAPI.swift in Sources */,
 				088A114A2CE59C4000EC1002 /* Optional+Ext.swift in Sources */,
 				088A11502CE59C7000EC1002 /* Utils+Ext.swift in Sources */,
@@ -570,10 +582,9 @@
 				DEVELOPMENT_TEAM = RKF34AM7UT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MiTunes/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_BUNDLE_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "MiTunes-Debug";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -600,10 +611,9 @@
 				DEVELOPMENT_TEAM = RKF34AM7UT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MiTunes/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_BUNDLE_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "MiTunes-Debug";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

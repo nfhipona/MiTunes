@@ -54,7 +54,9 @@ final class iTunesServiceAPI {
 
     private let service: MiTunesAPI
 
-    init(service: MiTunesAPI) {
+    init(
+        service: MiTunesAPI = .shared
+    ) {
         self.service = service
     }
 

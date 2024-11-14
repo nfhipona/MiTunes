@@ -4,6 +4,7 @@
 //
 //  Created by Neil Francis Ramirez Hipona on 11/14/24.
 //
+// https://developer.apple.com/documentation/foundation/urlsession/processing_url_session_data_task_results_with_combine
 
 import Foundation
 import Combine
@@ -25,14 +26,22 @@ extension MiTunesAPI {
 }
 
 final class MiTunesAPI {
-    let baseURL: String
-    let decoder: JSONDecoder
+    private let session: URLSession
+    private let retry: Int
+    private let baseURL: String
+    private let decoder: JSONDecoder
 
     static let shared = MiTunesAPI(
         baseURL: AppConfiguration.shared.baseURL
     )
 
-    init(baseURL: String) {
+    init(
+        session: URLSession = .shared,
+        retry: Int = 3,
+        baseURL: String
+    ) {
+        self.session = session
+        self.retry = retry
         self.baseURL = baseURL
         self.decoder = JSONDecoder()
     }
@@ -44,13 +53,15 @@ final class MiTunesAPI {
         body: Data? = nil,
         queryItems: [URLQueryItem]? = nil
     ) -> AnyPublisher<T, Error> {
-        guard 
-            var components = URLComponents(string: baseURL.appending(path)),
-            let url = components.url
+        guard var components = URLComponents(string: baseURL.appending(path))
         else {
             return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
         }
         components.queryItems = queryItems
+        guard let url = components.url
+        else {
+            return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
+        }
 
         var request = URLRequest(
             url: url,
@@ -66,10 +77,12 @@ final class MiTunesAPI {
                 request.setValue($0.value, forHTTPHeaderField: $0.name)
             }
 
-        return URLSession.shared
+        return session
             .dataTaskPublisher(for: request)
+            .retry(retry)
             .map(\.data)
             .decode(type: T.self, decoder: decoder)
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 }

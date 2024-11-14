@@ -44,6 +44,9 @@
 		088A11612CE5A9AC00EC1002 /* iTunesSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11602CE5A9AC00EC1002 /* iTunesSearchResult.swift */; };
 		088A11622CE5A9AC00EC1002 /* iTunesSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11602CE5A9AC00EC1002 /* iTunesSearchResult.swift */; };
 		088A11632CE5A9AC00EC1002 /* iTunesSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11602CE5A9AC00EC1002 /* iTunesSearchResult.swift */; };
+		088A11652CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11642CE5AAAA00EC1002 /* iTunesMedia.swift */; };
+		088A11662CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11642CE5AAAA00EC1002 /* iTunesMedia.swift */; };
+		088A11672CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11642CE5AAAA00EC1002 /* iTunesMedia.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,7 @@
 		088A11572CE5A16400EC1002 /* MiTunesAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiTunesAPIProtocol.swift; sourceTree = "<group>"; };
 		088A115B2CE5A61B00EC1002 /* iTunesServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesServiceAPI.swift; sourceTree = "<group>"; };
 		088A11602CE5A9AC00EC1002 /* iTunesSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchResult.swift; sourceTree = "<group>"; };
+		088A11642CE5AAAA00EC1002 /* iTunesMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesMedia.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				088A11602CE5A9AC00EC1002 /* iTunesSearchResult.swift */,
+				088A11642CE5AAAA00EC1002 /* iTunesMedia.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				088A114F2CE59C7000EC1002 /* Utils+Ext.swift in Sources */,
 				088A11132CE595B600EC1002 /* MiTunes.xcdatamodeld in Sources */,
 				088A115C2CE5A61B00EC1002 /* iTunesServiceAPI.swift in Sources */,
+				088A11652CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */,
 				088A11092CE595B600EC1002 /* AppDelegate.swift in Sources */,
 				088A110B2CE595B600EC1002 /* SceneDelegate.swift in Sources */,
 				088A11492CE59C3B00EC1002 /* Optional+Ext.swift in Sources */,
@@ -375,6 +381,7 @@
 				088A114D2CE59C4400EC1002 /* AppConfiguration.swift in Sources */,
 				088A11592CE5A16400EC1002 /* MiTunesAPIProtocol.swift in Sources */,
 				088A11232CE595B900EC1002 /* MiTunesTests.swift in Sources */,
+				088A11662CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */,
 				088A115D2CE5A61B00EC1002 /* iTunesServiceAPI.swift in Sources */,
 				088A114A2CE59C4000EC1002 /* Optional+Ext.swift in Sources */,
 				088A11502CE59C7000EC1002 /* Utils+Ext.swift in Sources */,
@@ -385,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				088A11672CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */,
 				088A115A2CE5A16400EC1002 /* MiTunesAPIProtocol.swift in Sources */,
 				088A11632CE5A9AC00EC1002 /* iTunesSearchResult.swift in Sources */,
 				088A112F2CE595B900EC1002 /* MiTunesUITestsLaunchTests.swift in Sources */,

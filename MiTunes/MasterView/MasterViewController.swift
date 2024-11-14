@@ -11,6 +11,10 @@ import Combine
 class MasterViewController: UIViewController {
     private let viewModel: MasterViewModel
 
+    private let loadingView: LoadingView = {
+        return LoadingView(frame: .zero).translatesAutoresizingMask()
+    }()
+
     init(viewModel: MasterViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: .main)
@@ -24,27 +28,44 @@ class MasterViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
+        setupViews()
         setupBindings()
+        setupConstraints()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        viewModel.loadFetch()
+        viewModel.loadSearch(query: "start")
     }
 }
 
 private
 extension MasterViewController {
-    private func setupBindings() {
+    func setupViews() {
+        view.backgroundColor = .white
+        view.addSubview(loadingView)
+    }
+
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+
+    func setupBindings() {
         viewModel
             .loadingNotifier
-            .sink { state in
+            .sink { [weak self] state in
+                guard let self else { return }
                 switch state {
                 case .startLoading:
-                    break
+                    loadingView.startLoading()
                 case .stopLoading:
-                    break
+                    loadingView.stopLoading()
                 }
             }
             .store(in: &viewModel.cancellables)
@@ -65,7 +86,7 @@ extension MasterViewController {
             .store(in: &viewModel.cancellables)
     }
 
-    private func showAlert(
+    func showAlert(
         title: String?,
         message: String?,
         action: (() -> Void)?

@@ -18,6 +18,7 @@
         <attribute name="country" optional="YES" attributeType="String"/>
         <attribute name="currency" optional="YES" attributeType="String"/>
         <attribute name="hasITunesExtras" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="kind" optional="YES" attributeType="String"/>
         <attribute name="mediaLongDescription" optional="YES" attributeType="String"/>
         <attribute name="mediaShortDescription" optional="YES" attributeType="String"/>

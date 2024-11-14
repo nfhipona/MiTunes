@@ -34,12 +34,12 @@ final class MasterViewModel: ObservableObject {
         self.service = service
     }
 
-    func loadFetch() {
+    func loadSearch(query: String) {
         loadingNotifier.send(.startLoading)
         service.search(
             req: .search(
                 queries: [
-                    "term": "star",
+                    "term": query,
                     "country": "au",
                     "media": "movie"
                 ]
@@ -61,8 +61,8 @@ final class MasterViewModel: ObservableObject {
             }
         } receiveValue: { [weak self] result in
             guard let self else { return }
+            print("Search Result:", result)
             processResult(result: result)
-            loadingNotifier.send(.stopLoading)
         }
         .store(in: &cancellables)
     }
@@ -77,6 +77,14 @@ extension MasterViewModel {
             }
         mapped.forEach {
             CoreDataStack.shared.insert(model: $0)
+        }
+
+        CoreDataStack.shared.saveContext { [weak self] error in
+            guard let self else { return }
+            if let error {
+                print("CoreDataStack.shared.saveContext:", error)
+            }
+            loadingNotifier.send(.stopLoading)
         }
     }
 }

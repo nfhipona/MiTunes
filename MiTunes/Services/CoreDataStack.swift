@@ -63,6 +63,7 @@ extension CoreDataStack {
         do {
             // Attempt to save changes.
             try viewContext.save()
+            callback?(nil)
         } catch {
             print("Failed to save the context:", error.localizedDescription)
             callback?(error)

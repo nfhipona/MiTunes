@@ -23,8 +23,20 @@ extension String: Defaultable {
     static var defaultValue: String { "" }
 }
 
+extension Double: Defaultable {
+    static var defaultValue: Double { 0.0 }
+}
+
 extension Int: Defaultable {
     static var defaultValue: Int { 0 }
+}
+
+extension Int16: Defaultable {
+    static var defaultValue: Int16 { 0 }
+}
+
+extension Bool: Defaultable {
+    static var defaultValue: Bool { false }
 }
 
 extension Dictionary: Defaultable {

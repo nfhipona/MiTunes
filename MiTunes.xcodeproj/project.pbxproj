@@ -23,6 +23,15 @@
 		088A11412CE5975500EC1002 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 088A11402CE5975500EC1002 /* Debug.xcconfig */; };
 		088A11422CE5975500EC1002 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 088A11402CE5975500EC1002 /* Debug.xcconfig */; };
 		088A11432CE5975500EC1002 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 088A11402CE5975500EC1002 /* Debug.xcconfig */; };
+		088A11472CE59BE800EC1002 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11462CE59BE800EC1002 /* AppConfiguration.swift */; };
+		088A11492CE59C3B00EC1002 /* Optional+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11482CE59C3B00EC1002 /* Optional+Ext.swift */; };
+		088A114A2CE59C4000EC1002 /* Optional+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11482CE59C3B00EC1002 /* Optional+Ext.swift */; };
+		088A114B2CE59C4000EC1002 /* Optional+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11482CE59C3B00EC1002 /* Optional+Ext.swift */; };
+		088A114C2CE59C4300EC1002 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11462CE59BE800EC1002 /* AppConfiguration.swift */; };
+		088A114D2CE59C4400EC1002 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11462CE59BE800EC1002 /* AppConfiguration.swift */; };
+		088A114F2CE59C7000EC1002 /* Utils+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A114E2CE59C7000EC1002 /* Utils+Ext.swift */; };
+		088A11502CE59C7000EC1002 /* Utils+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A114E2CE59C7000EC1002 /* Utils+Ext.swift */; };
+		088A11512CE59C7000EC1002 /* Utils+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A114E2CE59C7000EC1002 /* Utils+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +68,9 @@
 		088A112E2CE595B900EC1002 /* MiTunesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiTunesUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		088A113C2CE5974400EC1002 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		088A11402CE5975500EC1002 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		088A11462CE59BE800EC1002 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		088A11482CE59C3B00EC1002 /* Optional+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Ext.swift"; sourceTree = "<group>"; };
+		088A114E2CE59C7000EC1002 /* Utils+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utils+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,8 @@
 		088A11072CE595B600EC1002 /* MiTunes */ = {
 			isa = PBXGroup;
 			children = (
+				088A11452CE59BCF00EC1002 /* Services */,
+				088A11442CE59BC000EC1002 /* Utils */,
 				088A113B2CE5970F00EC1002 /* Configuration */,
 				088A11082CE595B600EC1002 /* AppDelegate.swift */,
 				088A110A2CE595B600EC1002 /* SceneDelegate.swift */,
@@ -146,6 +160,23 @@
 				088A11402CE5975500EC1002 /* Debug.xcconfig */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		088A11442CE59BC000EC1002 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				088A11482CE59C3B00EC1002 /* Optional+Ext.swift */,
+				088A114E2CE59C7000EC1002 /* Utils+Ext.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		088A11452CE59BCF00EC1002 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				088A11462CE59BE800EC1002 /* AppConfiguration.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,9 +317,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				088A110D2CE595B600EC1002 /* ViewController.swift in Sources */,
+				088A11472CE59BE800EC1002 /* AppConfiguration.swift in Sources */,
+				088A114F2CE59C7000EC1002 /* Utils+Ext.swift in Sources */,
 				088A11132CE595B600EC1002 /* MiTunes.xcdatamodeld in Sources */,
 				088A11092CE595B600EC1002 /* AppDelegate.swift in Sources */,
 				088A110B2CE595B600EC1002 /* SceneDelegate.swift in Sources */,
+				088A11492CE59C3B00EC1002 /* Optional+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +330,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				088A114D2CE59C4400EC1002 /* AppConfiguration.swift in Sources */,
 				088A11232CE595B900EC1002 /* MiTunesTests.swift in Sources */,
+				088A114A2CE59C4000EC1002 /* Optional+Ext.swift in Sources */,
+				088A11502CE59C7000EC1002 /* Utils+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +342,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				088A112F2CE595B900EC1002 /* MiTunesUITestsLaunchTests.swift in Sources */,
+				088A11512CE59C7000EC1002 /* Utils+Ext.swift in Sources */,
 				088A112D2CE595B900EC1002 /* MiTunesUITests.swift in Sources */,
+				088A114C2CE59C4300EC1002 /* AppConfiguration.swift in Sources */,
+				088A114B2CE59C4000EC1002 /* Optional+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -287,6 +287,18 @@ extension DetailViewController {
         CoreDataStack
             .shared
             .setMediaLastVisit(for: media)
+
+        guard let imageURL = URL(string: media.artworkUrl100.unwrapped)
+        else { return }
+        let placeholderImage = UIImage(systemName: "movieclapper.fill")?
+            .withRenderingMode(.alwaysTemplate)
+        placeholderImage?.withTintColor(.blue)
+        imageView
+            .af
+            .setImage(
+                withURL: imageURL,
+                placeholderImage: placeholderImage
+            )
     }
 
     @objc func favoriteButtonAction() {

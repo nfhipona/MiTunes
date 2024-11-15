@@ -21,6 +21,7 @@
 		08855CA72CE72B2E00580AAF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA52CE72B2E00580AAF /* DetailViewController.swift */; };
 		08855CA92CE72B3600580AAF /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA82CE72B3600580AAF /* DetailViewModel.swift */; };
 		08855CAA2CE72B3600580AAF /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA82CE72B3600580AAF /* DetailViewModel.swift */; };
+		08855CAD2CE7436000580AAF /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 08855CAC2CE7436000580AAF /* AlamofireImage */; };
 		088A11092CE595B600EC1002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11082CE595B600EC1002 /* AppDelegate.swift */; };
 		088A110B2CE595B600EC1002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A110A2CE595B600EC1002 /* SceneDelegate.swift */; };
 		088A110D2CE595B600EC1002 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A110C2CE595B600EC1002 /* MasterViewController.swift */; };
@@ -123,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08855CAD2CE7436000580AAF /* AlamofireImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +311,9 @@
 			dependencies = (
 			);
 			name = MiTunes;
+			packageProductDependencies = (
+				08855CAC2CE7436000580AAF /* AlamofireImage */,
+			);
 			productName = MiTunes;
 			productReference = 088A11052CE595B600EC1002 /* MiTunes.app */;
 			productType = "com.apple.product-type.application";
@@ -381,6 +386,9 @@
 				Base,
 			);
 			mainGroup = 088A10FC2CE595B600EC1002;
+			packageReferences = (
+				08855CAB2CE7436000580AAF /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+			);
 			productRefGroup = 088A11062CE595B600EC1002 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -815,6 +823,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		08855CAB2CE7436000580AAF /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		08855CAC2CE7436000580AAF /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08855CAB2CE7436000580AAF /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		088A11112CE595B600EC1002 /* MiTunes.xcdatamodeld */ = {

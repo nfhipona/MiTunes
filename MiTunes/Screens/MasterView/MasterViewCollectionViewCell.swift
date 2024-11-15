@@ -5,6 +5,7 @@
 //  Created by Neil Francis Ramirez Hipona on 11/15/24.
 //
 
+import AlamofireImage
 import Foundation
 import UIKit
 
@@ -118,6 +119,18 @@ final class MasterViewCollectionViewCell: UICollectionViewCell {
         priceLabel.text = "Price: \(media.trackPrice.currency)"
         genreLabel.text = "Genre: \(media.primaryGenreName.unwrapped)"
         favoriteButton.isSelected = media.isFavorite
+
+        guard let imageURL = URL(string: media.artworkUrl100.unwrapped)
+        else { return }
+        let placeholderImage = UIImage(systemName: "movieclapper.fill")?
+            .withRenderingMode(.alwaysTemplate)
+        placeholderImage?.withTintColor(.blue)
+        imageView
+            .af
+            .setImage(
+                withURL: imageURL,
+                placeholderImage: placeholderImage
+            )
     }
 }
 

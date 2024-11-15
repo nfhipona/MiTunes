@@ -50,11 +50,17 @@ extension CoreDataStack {
         media.mediaShortDescription = model.shortDescription
         media.mediaLongDescription = model.longDescription
         media.hasITunesExtras = model.hasITunesExtras.unwrapped
+        media.createdAt = Date()
         return media
     }
 
     func setMediaFavoriteState(for model: Media, isFavorite: Bool) {
         model.isFavorite = isFavorite
+        saveContext()
+    }
+
+    func setMediaLastVisit(for model: Media) {
+        model.lastVisitAt = Date()
         saveContext()
     }
 
@@ -92,6 +98,8 @@ extension CoreDataStack {
         if let results: [Media] = try? viewContext.fetch(request),
            let oldMedia = results.first {
             media.isFavorite = oldMedia.isFavorite
+            media.createdAt = oldMedia.createdAt
+            media.lastVisitAt = oldMedia.lastVisitAt
         }
 
         insert(model: media)

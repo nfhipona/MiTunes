@@ -16,10 +16,12 @@
         <attribute name="collectionViewUrl" optional="YES" attributeType="String"/>
         <attribute name="contentAdvisoryRating" optional="YES" attributeType="String"/>
         <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="currency" optional="YES" attributeType="String"/>
         <attribute name="hasITunesExtras" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="kind" optional="YES" attributeType="String"/>
+        <attribute name="lastVisitAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="mediaLongDescription" optional="YES" attributeType="String"/>
         <attribute name="mediaShortDescription" optional="YES" attributeType="String"/>
         <attribute name="previewUrl" optional="YES" attributeType="String"/>

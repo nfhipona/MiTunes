@@ -34,6 +34,30 @@ extension DetailViewController {
 final class DetailViewController: UIViewController {
     private let viewModel: DetailViewModel
 
+    private lazy var titleView: UIView = {
+        let lastVisitText = viewModel
+            .media
+            .lastVisitAt?
+            .readableDisplay
+
+        let dateLabel = UILabel(frame: .zero)
+            .translatesAutoresizingMask()
+        dateLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        dateLabel.text = lastVisitText.unwrapped.isEmpty ? "" : "Last Visit: \(lastVisitText.unwrapped)"
+
+        let titleView = UIView(frame: .zero)
+        titleView.addSubview(dateLabel)
+
+        NSLayoutConstraint.activate([
+            dateLabel.topAnchor.constraint(equalTo: titleView.topAnchor),
+            dateLabel.leadingAnchor.constraint(equalTo: titleView.leadingAnchor),
+            dateLabel.trailingAnchor.constraint(equalTo: titleView.trailingAnchor),
+            dateLabel.bottomAnchor.constraint(equalTo: titleView.bottomAnchor)
+        ])
+
+        return titleView.translatesAutoresizingMask()
+    }()
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
@@ -117,14 +141,19 @@ final class DetailViewController: UIViewController {
     init(viewModel: DetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: .main)
-
-        setupView()
-        setupConstraints()
-        setupBindings()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupNavigation()
+        setupView()
+        setupConstraints()
+        setupBindings()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -138,6 +167,10 @@ final class DetailViewController: UIViewController {
 
 private
 extension DetailViewController {
+    func setupNavigation() {
+        navigationItem.titleView = titleView
+    }
+
     func setupView() {
         view.backgroundColor = .white
         view.addSubview(scrollView)
@@ -250,6 +283,10 @@ extension DetailViewController {
         favoriteButton.isSelected = media.isFavorite
 
         longDescriptionLabelTopConstraint.isActive = !media.mediaShortDescription.unwrapped.isEmpty
+
+        CoreDataStack
+            .shared
+            .setMediaLastVisit(for: media)
     }
 
     @objc func favoriteButtonAction() {

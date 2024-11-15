@@ -48,3 +48,11 @@ extension Double {
         return currenyFormatter.string(from: number) ?? "$0.0"
     }
 }
+
+// MARK: - Date
+
+extension Date {
+    var readableDisplay: String {
+        dateFormatter.string(from: self)
+    }
+}

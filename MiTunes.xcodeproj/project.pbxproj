@@ -11,6 +11,12 @@
 		08855C942CE5D27C00580AAF /* CoreDataStack+Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C922CE5D27C00580AAF /* CoreDataStack+Media.swift */; };
 		08855C972CE5D6B200580AAF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C962CE5D6B200580AAF /* LoadingView.swift */; };
 		08855C982CE5D6B200580AAF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C962CE5D6B200580AAF /* LoadingView.swift */; };
+		08855C9B2CE6F59E00580AAF /* MasterViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C9A2CE6F59E00580AAF /* MasterViewDataModel.swift */; };
+		08855C9C2CE6F59E00580AAF /* MasterViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C9A2CE6F59E00580AAF /* MasterViewDataModel.swift */; };
+		08855C9E2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C9D2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift */; };
+		08855C9F2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C9D2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift */; };
+		08855CA12CE7005200580AAF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA02CE7005200580AAF /* Constants.swift */; };
+		08855CA22CE7005200580AAF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA02CE7005200580AAF /* Constants.swift */; };
 		088A11092CE595B600EC1002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11082CE595B600EC1002 /* AppDelegate.swift */; };
 		088A110B2CE595B600EC1002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A110A2CE595B600EC1002 /* SceneDelegate.swift */; };
 		088A110D2CE595B600EC1002 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A110C2CE595B600EC1002 /* MasterViewController.swift */; };
@@ -76,6 +82,9 @@
 /* Begin PBXFileReference section */
 		08855C922CE5D27C00580AAF /* CoreDataStack+Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreDataStack+Media.swift"; path = "MiTunes/Models/CoreData/CoreDataStack+Media.swift"; sourceTree = SOURCE_ROOT; };
 		08855C962CE5D6B200580AAF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		08855C9A2CE6F59E00580AAF /* MasterViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewDataModel.swift; sourceTree = "<group>"; };
+		08855C9D2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewCollectionViewCell.swift; sourceTree = "<group>"; };
+		08855CA02CE7005200580AAF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		088A11052CE595B600EC1002 /* MiTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		088A11082CE595B600EC1002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		088A110A2CE595B600EC1002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,7 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				088A110C2CE595B600EC1002 /* MasterViewController.swift */,
+				08855C9D2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift */,
 				08ADB60C2CE5C73800205863 /* MasterViewModel.swift */,
+				08855C9A2CE6F59E00580AAF /* MasterViewDataModel.swift */,
 			);
 			path = MasterView;
 			sourceTree = "<group>";
@@ -214,6 +225,7 @@
 			children = (
 				088A11482CE59C3B00EC1002 /* Optional+Ext.swift */,
 				088A114E2CE59C7000EC1002 /* Utils+Ext.swift */,
+				08855CA02CE7005200580AAF /* Constants.swift */,
 				08855C992CE5D6C300580AAF /* View */,
 			);
 			path = Utils;
@@ -394,11 +406,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				08855C932CE5D27C00580AAF /* CoreDataStack+Media.swift in Sources */,
+				08855CA12CE7005200580AAF /* Constants.swift in Sources */,
 				08ADB60D2CE5C73800205863 /* MasterViewModel.swift in Sources */,
 				088A110D2CE595B600EC1002 /* MasterViewController.swift in Sources */,
+				08855C9E2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift in Sources */,
 				088A11472CE59BE800EC1002 /* AppConfiguration.swift in Sources */,
 				088A11612CE5A9AC00EC1002 /* iTunesSearchResult.swift in Sources */,
 				08855C972CE5D6B200580AAF /* LoadingView.swift in Sources */,
+				08855C9B2CE6F59E00580AAF /* MasterViewDataModel.swift in Sources */,
 				088A11582CE5A16400EC1002 /* MiTunesAPIProtocol.swift in Sources */,
 				088A11532CE5A08D00EC1002 /* MiTunesAPI.swift in Sources */,
 				088A114F2CE59C7000EC1002 /* Utils+Ext.swift in Sources */,
@@ -416,14 +431,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08855C9F2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift in Sources */,
 				08855C942CE5D27C00580AAF /* CoreDataStack+Media.swift in Sources */,
 				088A11622CE5A9AC00EC1002 /* iTunesSearchResult.swift in Sources */,
 				088A11542CE5A08D00EC1002 /* MiTunesAPI.swift in Sources */,
 				088A114D2CE59C4400EC1002 /* AppConfiguration.swift in Sources */,
 				088A11592CE5A16400EC1002 /* MiTunesAPIProtocol.swift in Sources */,
 				088A11232CE595B900EC1002 /* MiTunesTests.swift in Sources */,
+				08855CA22CE7005200580AAF /* Constants.swift in Sources */,
 				08ADB60B2CE5C33E00205863 /* CoreDataStack.swift in Sources */,
 				088A11662CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */,
+				08855C9C2CE6F59E00580AAF /* MasterViewDataModel.swift in Sources */,
 				08ADB60E2CE5C73800205863 /* MasterViewModel.swift in Sources */,
 				088A115D2CE5A61B00EC1002 /* iTunesServiceAPI.swift in Sources */,
 				088A114A2CE59C4000EC1002 /* Optional+Ext.swift in Sources */,

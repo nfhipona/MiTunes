@@ -29,6 +29,7 @@ final class MasterViewModel: ObservableObject {
     var cancellables = Set<AnyCancellable>()
     let loadingNotifier = PassthroughSubject<LoadingState, Never>()
     let errorNotifier = PassthroughSubject<ErrorState, Never>()
+    let updateNotifier = PassthroughSubject<MasterViewSnapshot, Never>()
 
     init(service: iTunesServiceAPI) {
         self.service = service
@@ -78,6 +79,17 @@ extension MasterViewModel {
         mapped.forEach {
             CoreDataStack.shared.insert(model: $0)
         }
+        
+        var snapshot = MasterViewSnapshot()
+        let masterData = mapped.map {
+            MasterViewModelItem(
+                sectionType: .main,
+                media: $0
+            )
+        }
+        snapshot.appendSections(MasterViewSectionType.allCases)
+        snapshot.appendItems(masterData, toSection: .main)
+        updateNotifier.send(snapshot)
 
         CoreDataStack.shared.saveContext { [weak self] error in
             guard let self else { return }

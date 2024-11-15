@@ -8,7 +8,13 @@
 import Foundation
 import UIKit
 
-class LoadingView: UIView {
+final class LoadingView: UIView {
+    private enum Constants {
+        static let iconSize = CGSize(width: 60, height: 60)
+        static let iconBottomConstraint: CGFloat = 16
+        static let activityIndicatorYConstraint: CGFloat = 8
+    }
+
     private let activityIndicatorView: UIActivityIndicatorView = {
         let indicatorView = UIActivityIndicatorView(style: .large)
         indicatorView.color = .white
@@ -21,6 +27,20 @@ class LoadingView: UIView {
         let blurEffect = UIBlurEffect(style: .dark)
         let blurredEffectView = UIVisualEffectView(effect: blurEffect)
         return blurredEffectView.translatesAutoresizingMask()
+    }()
+
+    private let musicIconView: UIImageView = {
+        guard
+            let image = UIImage(systemName: "popcorn.fill")?
+                .withRenderingMode(.alwaysTemplate)
+        else { fatalError("Missing symbol ...") }
+        image.withTintColor(.blue)
+
+        let imageView = UIImageView(frame: .zero)
+        imageView.setSymbolImage(image, contentTransition: .automatic)
+        imageView.addSymbolEffect(.bounce, options: .repeating)
+
+        return imageView.translatesAutoresizingMask()
     }()
 
     override init(frame: CGRect) {
@@ -41,6 +61,7 @@ class LoadingView: UIView {
 
         addSubviews([
             blurredEffectView,
+            musicIconView,
             activityIndicatorView
         ])
     }
@@ -54,8 +75,16 @@ class LoadingView: UIView {
         ])
 
         NSLayoutConstraint.activate([
+            musicIconView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            musicIconView.bottomAnchor.constraint(equalTo: activityIndicatorView.topAnchor, constant: -Constants.iconBottomConstraint),
+
+            musicIconView.widthAnchor.constraint(equalToConstant: Constants.iconSize.width),
+            musicIconView.heightAnchor.constraint(equalToConstant: Constants.iconSize.height)
+        ])
+
+        NSLayoutConstraint.activate([
             activityIndicatorView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            activityIndicatorView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            activityIndicatorView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -Constants.activityIndicatorYConstraint)
         ])
     }
 }

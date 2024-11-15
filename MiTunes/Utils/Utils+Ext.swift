@@ -39,3 +39,12 @@ extension UIView {
         return self
     }
 }
+
+// MARK: - Double
+
+extension Double {
+    var currency: String {
+        let number = NSNumber(value: self)
+        return currenyFormatter.string(from: number) ?? "$0.0"
+    }
+}

@@ -8,11 +8,39 @@
 import UIKit
 import Combine
 
-class MasterViewController: UIViewController {
+final class MasterViewController: UIViewController {
+    private enum Constants {
+        static let spacing: CGFloat = 8
+    }
+
     private let viewModel: MasterViewModel
+
+    private let collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = MasterViewCollectionViewCell.canvasSize
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumInteritemSpacing = Constants.spacing
+        flowLayout.minimumLineSpacing = Constants.spacing
+        flowLayout.sectionInset = UIEdgeInsets(
+            top: Constants.spacing,
+            left: Constants.spacing,
+            bottom: Constants.spacing,
+            right: Constants.spacing
+        )
+
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: flowLayout
+        )
+        return collectionView.translatesAutoresizingMask()
+    }()
 
     private let loadingView: LoadingView = {
         return LoadingView(frame: .zero).translatesAutoresizingMask()
+    }()
+
+    private lazy var dataSource: MasterViewDataSource = {
+        makeDataSource()
     }()
 
     init(viewModel: MasterViewModel) {
@@ -29,6 +57,7 @@ class MasterViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         setupViews()
+        setupCollectionViews()
         setupBindings()
         setupConstraints()
     }
@@ -44,10 +73,20 @@ private
 extension MasterViewController {
     func setupViews() {
         view.backgroundColor = .white
-        view.addSubview(loadingView)
+        view.addSubviews([
+            collectionView,
+            loadingView
+        ])
     }
 
     func setupConstraints() {
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 0),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
         NSLayoutConstraint.activate([
             loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             loadingView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -56,7 +95,13 @@ extension MasterViewController {
         ])
     }
 
+    func setupCollectionViews() {
+        collectionView.register(MasterViewCollectionViewCell.self, forCellWithReuseIdentifier: MasterViewCollectionViewCell.identifier)
+    }
+
     func setupBindings() {
+        collectionView.dataSource = makeDataSource()
+
         viewModel
             .loadingNotifier
             .sink { [weak self] state in
@@ -84,6 +129,15 @@ extension MasterViewController {
                 }
             }
             .store(in: &viewModel.cancellables)
+
+        viewModel
+            .updateNotifier
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] snapshot in
+                guard let self else { return }
+                dataSource.apply(snapshot)
+            }
+            .store(in: &viewModel.cancellables)
     }
 
     func showAlert(
@@ -109,5 +163,29 @@ extension MasterViewController {
 
         present(alertController, animated: true)
     }
+
+    func makeDataSource() -> MasterViewDataSource {
+        MasterViewDataSource(
+            collectionView: collectionView
+        ) { collectionView, indexPath, item in
+            switch item.sectionType {
+            case .main:
+                guard
+                    let customCell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: MasterViewCollectionViewCell.identifier,
+                        for: indexPath
+                    ) as? MasterViewCollectionViewCell
+                else { return UICollectionViewCell() }
+                customCell.setModel(item)
+                return customCell
+            }
+        }
+    }
 }
 
+// MARK: - UICollectionViewDelegate
+
+extension MasterViewController {
+    
+
+}

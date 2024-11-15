@@ -5,12 +5,12 @@
 //  Created by Neil Francis Ramirez Hipona on 11/14/24.
 //
 
+import CoreData
 import Foundation
 
 extension CoreDataStack {
     func createMedia(
-        for model: iTunesMedia,
-        isFavorite: Bool = false
+        for model: iTunesMedia
     ) -> Media {
         let media = Media(context: viewContext)
         media.wrapperType = model.wrapperType
@@ -49,7 +49,23 @@ extension CoreDataStack {
         media.mediaShortDescription = model.shortDescription
         media.mediaLongDescription = model.longDescription
         media.hasITunesExtras = model.hasITunesExtras.unwrapped
-        media.isFavorite = isFavorite
         return media
+    }
+
+    func setMediaFavoriteState(for model: Media, isFavorite: Bool) {
+        model.isFavorite = isFavorite
+        saveContext()
+    }
+
+    func fetchAllFavoriteMedia() -> [Media] {
+        let request = Media.fetchRequest()
+        request.predicate = NSPredicate(format: "isFavorite = true")
+        do {
+            let results: [Media] = try viewContext.fetch(request)
+            return results
+        } catch {
+            print("fetchAllFavoriteMedia:", error)
+        }
+        return []
     }
 }

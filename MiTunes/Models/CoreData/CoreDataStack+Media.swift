@@ -5,6 +5,7 @@
 //  Created by Neil Francis Ramirez Hipona on 11/14/24.
 //
 
+import Combine
 import CoreData
 import Foundation
 
@@ -64,8 +65,36 @@ extension CoreDataStack {
             let results: [Media] = try viewContext.fetch(request)
             return results
         } catch {
-            print("fetchAllFavoriteMedia:", error)
+            print("fetchAllFavoriteMedia error:", error)
         }
         return []
+    }
+
+    func fetchAllMedia() -> [Media] {
+        let request = Media.fetchRequest()
+        request.predicate = NSPredicate(format: "trackId != nil")
+        do {
+            let results: [Media] = try viewContext.fetch(request)
+            return results
+        } catch {
+            print("fetchAllMedia error:", error)
+        }
+        return []
+    }
+
+    func insertOrUpdateMedia(
+        for model: iTunesMedia
+    ) -> Media {
+        let media = createMedia(for: model)
+        let request = Media.fetchRequest()
+        request.predicate = NSPredicate(format: "trackId = %d", model.trackId)
+
+        if let results: [Media] = try? viewContext.fetch(request),
+           let oldMedia = results.first {
+            media.isFavorite = oldMedia.isFavorite
+        }
+
+        insert(model: media)
+        return media
     }
 }

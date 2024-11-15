@@ -69,19 +69,27 @@ final class MasterViewModel: ObservableObject {
     }
 }
 
+// Mark: - Helpers
+
 private
 extension MasterViewModel {
     func processResult(result: iTunesSearchResult) {
         let mapped = result.results
-            .map {
-                CoreDataStack.shared.createMedia(for: $0)
+            .map { CoreDataStack.shared.insertOrUpdateMedia(for: $0) }
+        makeSnapshot(media: mapped)
+
+        CoreDataStack.shared.saveContext { [weak self] error in
+            guard let self else { return }
+            if let error {
+                print("CoreDataStack.shared.saveContext:", error)
             }
-        mapped.forEach {
-            CoreDataStack.shared.insert(model: $0)
+            loadingNotifier.send(.stopLoading)
         }
-        
+    }
+
+    func makeSnapshot(media: [Media]) {
         var snapshot = MasterViewSnapshot()
-        let masterData = mapped.map {
+        let masterData = media.map {
             MasterViewModelItem(
                 sectionType: .main,
                 media: $0
@@ -90,12 +98,21 @@ extension MasterViewModel {
         snapshot.appendSections(MasterViewSectionType.allCases)
         snapshot.appendItems(masterData, toSection: .main)
         updateNotifier.send(snapshot)
+    }
+}
 
-        CoreDataStack.shared.saveContext { [weak self] error in
-            guard let self else { return }
-            if let error {
-                print("CoreDataStack.shared.saveContext:", error)
-            }
+// Mark: - Methods
+
+extension MasterViewModel {
+    func preLoadData() {
+        loadingNotifier.send(.startLoading)
+        let media = CoreDataStack.shared.fetchAllMedia()
+        print("media count:", media.count)
+        
+        if media.isEmpty {
+            loadSearch(query: "star")
+        } else {
+            makeSnapshot(media: media)
             loadingNotifier.send(.stopLoading)
         }
     }

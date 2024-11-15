@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class MasterViewCollectionViewCell: UICollectionViewCell {
+extension MasterViewCollectionViewCell {
     static var canvasSize: CGSize = {
         let screenHeight = [
             Constants.padding,
@@ -16,9 +16,9 @@ final class MasterViewCollectionViewCell: UICollectionViewCell {
             Constants.padding,
             Constants.nameLabelHeight,
             Constants.padding,
-            Constants.priceLabelHeight,
-            Constants.padding4,
             Constants.genreLabelHeight,
+            Constants.padding4,
+            Constants.priceLabelHeight,
             Constants.padding
         ].reduce(0, { partialResult, next in
             partialResult + next
@@ -49,8 +49,11 @@ final class MasterViewCollectionViewCell: UICollectionViewCell {
         static let nameLabelHeight: CGFloat = 40
         static let priceLabelHeight: CGFloat = 16
         static let genreLabelHeight: CGFloat = 16
+        static let favoriteButtonSize = CGSize(width: 30, height: 30)
     }
+}
 
+final class MasterViewCollectionViewCell: UICollectionViewCell {
     static let identifier: String = UUID().uuidString
 
     private let imageView: UIImageView = {
@@ -70,16 +73,27 @@ final class MasterViewCollectionViewCell: UICollectionViewCell {
         return label.translatesAutoresizingMask()
     }()
 
+    private let genreLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.font = .systemFont(ofSize: 12, weight: .regular)
+        return label.translatesAutoresizingMask()
+    }()
+
     private let priceLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = .systemFont(ofSize: 12, weight: .medium)
         return label.translatesAutoresizingMask()
     }()
 
-    private let genreLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = .systemFont(ofSize: 12, weight: .regular)
-        return label.translatesAutoresizingMask()
+    private let favoriteButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        let activeImage = UIImage(systemName: "heart.fill")?
+            .withRenderingMode(.alwaysTemplate)
+        activeImage?.withTintColor(.blue)
+        button.setImage(activeImage, for: .selected)
+        button.contentMode = .scaleAspectFit
+        return button.translatesAutoresizingMask()
     }()
 
     private var model: MasterViewModelItem?
@@ -89,6 +103,7 @@ final class MasterViewCollectionViewCell: UICollectionViewCell {
 
         setupViews()
         setupConstraints()
+        setupBindings()
     }
     
     required init?(coder: NSCoder) {
@@ -100,10 +115,13 @@ final class MasterViewCollectionViewCell: UICollectionViewCell {
 
         let media = model.media
         nameLabel.text = media.trackName
-        priceLabel.text = media.trackPrice.currency
-        genreLabel.text = media.primaryGenreName
+        priceLabel.text = "Price: \(media.trackPrice.currency)"
+        genreLabel.text = "Genre: \(media.primaryGenreName.unwrapped)"
+        favoriteButton.isSelected = media.isFavorite
     }
 }
+
+// MARK: - Setup
 
 private
 extension MasterViewCollectionViewCell {
@@ -111,8 +129,9 @@ extension MasterViewCollectionViewCell {
         contentView.addSubviews([
             imageView,
             nameLabel,
+            genreLabel,
             priceLabel,
-            genreLabel
+            favoriteButton
         ])
     }
 
@@ -133,18 +152,47 @@ extension MasterViewCollectionViewCell {
         ])
 
         NSLayoutConstraint.activate([
-            priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Constants.padding),
-            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.padding),
-            priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.padding),
-            priceLabel.heightAnchor.constraint(equalToConstant: Constants.priceLabelHeight)
+            genreLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Constants.padding),
+            genreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.padding),
+            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.padding),
+            genreLabel.heightAnchor.constraint(equalToConstant: Constants.genreLabelHeight)
         ])
 
         NSLayoutConstraint.activate([
-            genreLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: Constants.padding4),
-            genreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.padding),
-            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.padding),
-            genreLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.padding),
-            genreLabel.heightAnchor.constraint(equalToConstant: Constants.genreLabelHeight)
+            priceLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: Constants.padding4),
+            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.padding),
+            priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.padding),
+            priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.padding),
+            priceLabel.heightAnchor.constraint(equalToConstant: Constants.priceLabelHeight),
         ])
+
+        NSLayoutConstraint.activate([
+            favoriteButton.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -Constants.padding),
+            favoriteButton.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -Constants.padding),
+            favoriteButton.widthAnchor.constraint(equalToConstant: Constants.favoriteButtonSize.width),
+            favoriteButton.heightAnchor.constraint(equalToConstant: Constants.favoriteButtonSize.height)
+        ])
+    }
+
+    func setupBindings() {
+        favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
+    }
+}
+
+// MARK: - Methods
+
+private
+extension MasterViewCollectionViewCell {
+    @objc func favoriteButtonAction() {
+        guard let model else { return }
+        let media = model.media
+        let isFavorite = !media.isFavorite
+        CoreDataStack
+            .shared
+            .setMediaFavoriteState(
+                for: media,
+                isFavorite: isFavorite
+            )
+        favoriteButton.isSelected = isFavorite
     }
 }

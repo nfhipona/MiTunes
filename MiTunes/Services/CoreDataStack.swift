@@ -70,17 +70,24 @@ extension CoreDataStack {
         }
     }
 
+    /// Utilize shouldSave if only one item to save
+    func insert(
+        model: NSManagedObject,
+        shouldSave: Bool = false,
+        callback: CallbackHandler? = nil
+    ) {
+        viewContext.insert(model)
+
+        if shouldSave {
+            saveContext(callback: callback)
+        }
+    }
+
     func delete(
-        item: Media,
+        item: NSManagedObject,
         callback: CallbackHandler? = nil
     ) {
         viewContext.delete(item)
         saveContext(callback: callback)
-    }
-
-    func insert(
-        model: NSManagedObject
-    ) {
-        viewContext.insert(model)
     }
 }

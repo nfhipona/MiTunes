@@ -65,9 +65,11 @@ final class MasterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        viewModel.loadSearch(query: "start")
+        viewModel.preLoadData()
     }
 }
+
+// MARK: - Setup
 
 private
 extension MasterViewController {
@@ -139,7 +141,12 @@ extension MasterViewController {
             }
             .store(in: &viewModel.cancellables)
     }
+}
 
+// MARK: - Methods
+
+private
+extension MasterViewController {
     func showAlert(
         title: String?,
         message: String?,
@@ -181,11 +188,4 @@ extension MasterViewController {
             }
         }
     }
-}
-
-// MARK: - UICollectionViewDelegate
-
-extension MasterViewController {
-    
-
 }

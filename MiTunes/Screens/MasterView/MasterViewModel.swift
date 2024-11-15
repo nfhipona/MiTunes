@@ -25,11 +25,13 @@ extension MasterViewModel {
 
 final class MasterViewModel: ObservableObject {
     private let service: iTunesServiceAPI
+    private var masterData: [MasterViewModelItem] = []
 
     var cancellables = Set<AnyCancellable>()
     let loadingNotifier = PassthroughSubject<LoadingState, Never>()
     let errorNotifier = PassthroughSubject<ErrorState, Never>()
     let updateNotifier = PassthroughSubject<MasterViewSnapshot, Never>()
+    let navigateNotifier = PassthroughSubject<MasterViewModelItem, Never>()
 
     init(service: iTunesServiceAPI) {
         self.service = service
@@ -88,15 +90,16 @@ extension MasterViewModel {
     }
 
     func makeSnapshot(media: [Media]) {
-        var snapshot = MasterViewSnapshot()
-        let masterData = media.map {
+        let mapped = media.map {
             MasterViewModelItem(
                 sectionType: .main,
                 media: $0
             )
         }
+        masterData = mapped
+        var snapshot = MasterViewSnapshot()
         snapshot.appendSections(MasterViewSectionType.allCases)
-        snapshot.appendItems(masterData, toSection: .main)
+        snapshot.appendItems(mapped, toSection: .main)
         updateNotifier.send(snapshot)
     }
 }
@@ -115,5 +118,11 @@ extension MasterViewModel {
             makeSnapshot(media: media)
             loadingNotifier.send(.stopLoading)
         }
+    }
+
+    func didSelectItem(at indexPath: IndexPath)  {
+        guard indexPath.row < masterData.count else { return }
+        let media = masterData[indexPath.row]
+        navigateNotifier.send(media)
     }
 }

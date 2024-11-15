@@ -5,8 +5,8 @@
 //  Created by Neil Francis Ramirez Hipona on 11/14/24.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 final class MasterViewController: UIViewController {
     private enum Constants {
@@ -75,6 +75,8 @@ private
 extension MasterViewController {
     func setupViews() {
         view.backgroundColor = .white
+        collectionView.delegate = self
+
         view.addSubviews([
             collectionView,
             loadingView
@@ -106,6 +108,7 @@ extension MasterViewController {
 
         viewModel
             .loadingNotifier
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 guard let self else { return }
                 switch state {
@@ -119,6 +122,7 @@ extension MasterViewController {
 
         viewModel
             .errorNotifier
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 guard let self else { return }
                 switch state {
@@ -140,6 +144,23 @@ extension MasterViewController {
                 dataSource.apply(snapshot)
             }
             .store(in: &viewModel.cancellables)
+
+        viewModel
+            .navigateNotifier
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] item in
+                guard let self else { return }
+                navigateToDetailPage(with: item)
+            }
+            .store(in: &viewModel.cancellables)
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension MasterViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.didSelectItem(at: indexPath)
     }
 }
 
@@ -187,5 +208,11 @@ extension MasterViewController {
                 return customCell
             }
         }
+    }
+
+    func navigateToDetailPage(with item: MasterViewModelItem) {
+        let viewModel = DetailViewModel(media: item.media)
+        let detailViewController = DetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

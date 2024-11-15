@@ -17,6 +17,10 @@
 		08855C9F2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C9D2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift */; };
 		08855CA12CE7005200580AAF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA02CE7005200580AAF /* Constants.swift */; };
 		08855CA22CE7005200580AAF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA02CE7005200580AAF /* Constants.swift */; };
+		08855CA62CE72B2E00580AAF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA52CE72B2E00580AAF /* DetailViewController.swift */; };
+		08855CA72CE72B2E00580AAF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA52CE72B2E00580AAF /* DetailViewController.swift */; };
+		08855CA92CE72B3600580AAF /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA82CE72B3600580AAF /* DetailViewModel.swift */; };
+		08855CAA2CE72B3600580AAF /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA82CE72B3600580AAF /* DetailViewModel.swift */; };
 		088A11092CE595B600EC1002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11082CE595B600EC1002 /* AppDelegate.swift */; };
 		088A110B2CE595B600EC1002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A110A2CE595B600EC1002 /* SceneDelegate.swift */; };
 		088A110D2CE595B600EC1002 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A110C2CE595B600EC1002 /* MasterViewController.swift */; };
@@ -85,6 +89,8 @@
 		08855C9A2CE6F59E00580AAF /* MasterViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewDataModel.swift; sourceTree = "<group>"; };
 		08855C9D2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		08855CA02CE7005200580AAF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		08855CA52CE72B2E00580AAF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		08855CA82CE72B3600580AAF /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		088A11052CE595B600EC1002 /* MiTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		088A11082CE595B600EC1002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		088A110A2CE595B600EC1002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +162,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		08855CA32CE72B1000580AAF /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				08855CA42CE72B2000580AAF /* DetailView */,
+				08855C952CE5D69700580AAF /* MasterView */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		08855CA42CE72B2000580AAF /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				08855CA52CE72B2E00580AAF /* DetailViewController.swift */,
+				08855CA82CE72B3600580AAF /* DetailViewModel.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
 		088A10FC2CE595B600EC1002 = {
 			isa = PBXGroup;
 			children = (
@@ -185,7 +209,7 @@
 				088A113B2CE5970F00EC1002 /* Configuration */,
 				088A11082CE595B600EC1002 /* AppDelegate.swift */,
 				088A110A2CE595B600EC1002 /* SceneDelegate.swift */,
-				08855C952CE5D69700580AAF /* MasterView */,
+				08855CA32CE72B1000580AAF /* Screens */,
 				088A11142CE595B800EC1002 /* Assets.xcassets */,
 				088A11162CE595B800EC1002 /* LaunchScreen.storyboard */,
 				088A11192CE595B800EC1002 /* Info.plist */,
@@ -412,6 +436,7 @@
 				08855C9E2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift in Sources */,
 				088A11472CE59BE800EC1002 /* AppConfiguration.swift in Sources */,
 				088A11612CE5A9AC00EC1002 /* iTunesSearchResult.swift in Sources */,
+				08855CA62CE72B2E00580AAF /* DetailViewController.swift in Sources */,
 				08855C972CE5D6B200580AAF /* LoadingView.swift in Sources */,
 				08855C9B2CE6F59E00580AAF /* MasterViewDataModel.swift in Sources */,
 				088A11582CE5A16400EC1002 /* MiTunesAPIProtocol.swift in Sources */,
@@ -420,6 +445,7 @@
 				08ADB60A2CE5C33E00205863 /* CoreDataStack.swift in Sources */,
 				088A11132CE595B600EC1002 /* MiTunes.xcdatamodeld in Sources */,
 				088A115C2CE5A61B00EC1002 /* iTunesServiceAPI.swift in Sources */,
+				08855CA92CE72B3600580AAF /* DetailViewModel.swift in Sources */,
 				088A11652CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */,
 				088A11092CE595B600EC1002 /* AppDelegate.swift in Sources */,
 				088A110B2CE595B600EC1002 /* SceneDelegate.swift in Sources */,
@@ -432,6 +458,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08855C9F2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift in Sources */,
+				08855CA72CE72B2E00580AAF /* DetailViewController.swift in Sources */,
 				08855C942CE5D27C00580AAF /* CoreDataStack+Media.swift in Sources */,
 				088A11622CE5A9AC00EC1002 /* iTunesSearchResult.swift in Sources */,
 				088A11542CE5A08D00EC1002 /* MiTunesAPI.swift in Sources */,
@@ -443,6 +470,7 @@
 				088A11662CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */,
 				08855C9C2CE6F59E00580AAF /* MasterViewDataModel.swift in Sources */,
 				08ADB60E2CE5C73800205863 /* MasterViewModel.swift in Sources */,
+				08855CAA2CE72B3600580AAF /* DetailViewModel.swift in Sources */,
 				088A115D2CE5A61B00EC1002 /* iTunesServiceAPI.swift in Sources */,
 				088A114A2CE59C4000EC1002 /* Optional+Ext.swift in Sources */,
 				08855C982CE5D6B200580AAF /* LoadingView.swift in Sources */,

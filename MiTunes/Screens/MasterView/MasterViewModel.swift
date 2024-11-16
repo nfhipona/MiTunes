@@ -26,12 +26,14 @@ extension MasterViewModel {
 final class MasterViewModel: ObservableObject {
     private let service: iTunesServiceAPI
     private var masterData: [MasterViewModelItem] = []
+    private var favoriteData: [MasterViewModelFavoriteItem] = []
 
     var cancellables = Set<AnyCancellable>()
     let loadingNotifier = PassthroughSubject<LoadingState, Never>()
     let errorNotifier = PassthroughSubject<ErrorState, Never>()
     let updateNotifier = PassthroughSubject<MasterViewSnapshot, Never>()
-    let navigateNotifier = PassthroughSubject<MasterViewModelItem, Never>()
+    let updateFavoriteNotifier = PassthroughSubject<(Bool, MasterViewFavoriteSnapshot), Never>()
+    let navigateNotifier = PassthroughSubject<Media, Never>()
 
     init(service: iTunesServiceAPI) {
         self.service = service
@@ -96,11 +98,38 @@ extension MasterViewModel {
                 media: $0
             )
         }
+        let updateNotifiers = mapped.map { $0.updateNotifier }
+        handleUpdateNotifier(updateNotifiers: updateNotifiers)
+
         masterData = mapped
         var snapshot = MasterViewSnapshot()
         snapshot.appendSections(MasterViewSectionType.allCases)
         snapshot.appendItems(mapped, toSection: .main)
         updateNotifier.send(snapshot)
+    }
+
+    func makeFavoriteSnapshot(media: [Media]) {
+        let mapped = media.map {
+            MasterViewModelFavoriteItem(media: $0)
+        }
+        favoriteData = mapped
+        var snapshot = MasterViewFavoriteSnapshot()
+        snapshot.appendSections([0])
+        snapshot.appendItems(mapped, toSection: 0)
+        updateFavoriteNotifier.send((!favoriteData.isEmpty, snapshot))
+    }
+
+    func handleUpdateNotifier(updateNotifiers: [MasterViewModelItem.UpdateNotifier]) {
+        Publishers
+            .MergeMany(updateNotifiers)
+            .sink { [weak self] action in
+                guard let self else { return }
+                switch action {
+                case .favorite:
+                    reloadFavorites()
+                }
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -110,8 +139,9 @@ extension MasterViewModel {
     func preLoadData() {
         loadingNotifier.send(.startLoading)
         let media = CoreDataStack.shared.fetchAllMedia()
-        print("media count:", media.count)
-        
+        print("Master Data: \(media.count)")
+        reloadFavorites()
+
         if media.isEmpty {
             loadSearch(query: "star")
         } else {
@@ -120,9 +150,21 @@ extension MasterViewModel {
         }
     }
 
+    func reloadFavorites() {
+        let favoriteMedia = CoreDataStack.shared.fetchAllFavoriteMedia()
+        makeFavoriteSnapshot(media: favoriteMedia)
+        print("Favorite Data: \(favoriteMedia.count)")
+    }
+
     func didSelectItem(at indexPath: IndexPath)  {
         guard indexPath.row < masterData.count else { return }
-        let media = masterData[indexPath.row]
-        navigateNotifier.send(media)
+        let item = masterData[indexPath.row]
+        navigateNotifier.send(item.media)
+    }
+
+    func didSelectFavoriteItem(at indexPath: IndexPath)  {
+        guard indexPath.row < favoriteData.count else { return }
+        let item = favoriteData[indexPath.row]
+        navigateNotifier.send(item.media)
     }
 }

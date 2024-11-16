@@ -8,11 +8,14 @@
 import Combine
 import UIKit
 
-final class MasterViewController: UIViewController {
+extension MasterViewController {
     private enum Constants {
         static let spacing: CGFloat = 8
+        static let favoriteCollectionViewHeight: CGFloat = 100
     }
+}
 
+final class MasterViewController: UIViewController {
     private let viewModel: MasterViewModel
 
     private let collectionView: UICollectionView = {
@@ -35,12 +38,43 @@ final class MasterViewController: UIViewController {
         return collectionView.translatesAutoresizingMask()
     }()
 
+    private lazy var collectionViewTopConstant: NSLayoutConstraint = {
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+    }()
+
+    private let favoriteCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = MasterViewFavoriteCollectionViewCell.canvasSize
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumInteritemSpacing = Constants.spacing
+        flowLayout.minimumLineSpacing = Constants.spacing
+        flowLayout.sectionInset = UIEdgeInsets(
+            top: Constants.spacing,
+            left: Constants.spacing,
+            bottom: Constants.spacing,
+            right: Constants.spacing
+        )
+
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: flowLayout
+        )
+        collectionView.isHidden = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        return collectionView.translatesAutoresizingMask()
+    }()
+
     private let loadingView: LoadingView = {
         return LoadingView(frame: .zero).translatesAutoresizingMask()
     }()
 
     private lazy var dataSource: MasterViewDataSource = {
         makeDataSource()
+    }()
+
+    private lazy var favoriteDataSource: MasterViewFavoriteDataSource = {
+        makeFavoriteDataSource()
     }()
 
     init(viewModel: MasterViewModel) {
@@ -76,16 +110,28 @@ extension MasterViewController {
     func setupViews() {
         view.backgroundColor = .white
         collectionView.delegate = self
+        favoriteCollectionView.delegate = self
 
         view.addSubviews([
+            favoriteCollectionView,
             collectionView,
             loadingView
         ])
+
+        favoriteCollectionView.layer.borderWidth = 1
+        favoriteCollectionView.layer.borderColor = UIColor.lightGray.cgColor
     }
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 0),
+            favoriteCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            favoriteCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            favoriteCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            favoriteCollectionView.heightAnchor.constraint(equalToConstant: Constants.favoriteCollectionViewHeight)
+        ])
+
+        NSLayoutConstraint.activate([
+            collectionViewTopConstant,
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
@@ -101,10 +147,12 @@ extension MasterViewController {
 
     func setupCollectionViews() {
         collectionView.register(MasterViewCollectionViewCell.self, forCellWithReuseIdentifier: MasterViewCollectionViewCell.identifier)
+        favoriteCollectionView.register(MasterViewFavoriteCollectionViewCell.self, forCellWithReuseIdentifier: MasterViewFavoriteCollectionViewCell.identifier)
     }
 
     func setupBindings() {
-        collectionView.dataSource = makeDataSource()
+        collectionView.dataSource = dataSource
+        favoriteCollectionView.dataSource = favoriteDataSource
 
         viewModel
             .loadingNotifier
@@ -146,6 +194,17 @@ extension MasterViewController {
             .store(in: &viewModel.cancellables)
 
         viewModel
+            .updateFavoriteNotifier
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (hasFavorites, snapshot) in
+                guard let self else { return }
+                updateCollectionViewConstraints(hasFavorites: hasFavorites)
+                favoriteCollectionView.isHidden = !hasFavorites
+                favoriteDataSource.apply(snapshot)
+            }
+            .store(in: &viewModel.cancellables)
+
+        viewModel
             .navigateNotifier
             .receive(on: DispatchQueue.main)
             .sink { [weak self] item in
@@ -154,13 +213,25 @@ extension MasterViewController {
             }
             .store(in: &viewModel.cancellables)
     }
+
+    func updateCollectionViewConstraints(hasFavorites: Bool) {
+        UIView.animate(withDuration: 0.25) { [weak self] in
+            guard let self else { return }
+            collectionViewTopConstant.constant = hasFavorites ? Constants.favoriteCollectionViewHeight : 0
+            view.layoutSubviews()
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate
 
 extension MasterViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.didSelectItem(at: indexPath)
+        if collectionView == favoriteCollectionView {
+            viewModel.didSelectFavoriteItem(at: indexPath)
+        } else {
+            viewModel.didSelectItem(at: indexPath)
+        }
     }
 }
 
@@ -210,8 +281,23 @@ extension MasterViewController {
         }
     }
 
-    func navigateToDetailPage(with item: MasterViewModelItem) {
-        let viewModel = DetailViewModel(media: item.media)
+    func makeFavoriteDataSource() -> MasterViewFavoriteDataSource {
+        MasterViewFavoriteDataSource(
+            collectionView: favoriteCollectionView
+        ) { collectionView, indexPath, item in
+            guard
+                let customCell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: MasterViewFavoriteCollectionViewCell.identifier,
+                    for: indexPath
+                ) as? MasterViewFavoriteCollectionViewCell
+            else { return UICollectionViewCell() }
+            customCell.setModel(item)
+            return customCell
+        }
+    }
+
+    func navigateToDetailPage(with media: Media) {
+        let viewModel = DetailViewModel(media: media)
         let detailViewController = DetailViewController(viewModel: viewModel)
         navigationController?.pushViewController(detailViewController, animated: true)
     }

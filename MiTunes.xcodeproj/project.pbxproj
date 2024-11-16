@@ -22,6 +22,8 @@
 		08855CA92CE72B3600580AAF /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA82CE72B3600580AAF /* DetailViewModel.swift */; };
 		08855CAA2CE72B3600580AAF /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA82CE72B3600580AAF /* DetailViewModel.swift */; };
 		08855CAD2CE7436000580AAF /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 08855CAC2CE7436000580AAF /* AlamofireImage */; };
+		08855CAF2CE8FD0C00580AAF /* MasterViewFavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CAE2CE8FD0C00580AAF /* MasterViewFavoriteCollectionViewCell.swift */; };
+		08855CB02CE8FD0C00580AAF /* MasterViewFavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CAE2CE8FD0C00580AAF /* MasterViewFavoriteCollectionViewCell.swift */; };
 		088A11092CE595B600EC1002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A11082CE595B600EC1002 /* AppDelegate.swift */; };
 		088A110B2CE595B600EC1002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A110A2CE595B600EC1002 /* SceneDelegate.swift */; };
 		088A110D2CE595B600EC1002 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A110C2CE595B600EC1002 /* MasterViewController.swift */; };
@@ -92,6 +94,7 @@
 		08855CA02CE7005200580AAF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		08855CA52CE72B2E00580AAF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		08855CA82CE72B3600580AAF /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		08855CAE2CE8FD0C00580AAF /* MasterViewFavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewFavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		088A11052CE595B600EC1002 /* MiTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		088A11082CE595B600EC1002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		088A110A2CE595B600EC1002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,8 +152,9 @@
 			isa = PBXGroup;
 			children = (
 				088A110C2CE595B600EC1002 /* MasterViewController.swift */,
-				08855C9D2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift */,
 				08ADB60C2CE5C73800205863 /* MasterViewModel.swift */,
+				08855C9D2CE6F8D100580AAF /* MasterViewCollectionViewCell.swift */,
+				08855CAE2CE8FD0C00580AAF /* MasterViewFavoriteCollectionViewCell.swift */,
 				08855C9A2CE6F59E00580AAF /* MasterViewDataModel.swift */,
 			);
 			path = MasterView;
@@ -448,6 +452,7 @@
 				08855C972CE5D6B200580AAF /* LoadingView.swift in Sources */,
 				08855C9B2CE6F59E00580AAF /* MasterViewDataModel.swift in Sources */,
 				088A11582CE5A16400EC1002 /* MiTunesAPIProtocol.swift in Sources */,
+				08855CAF2CE8FD0C00580AAF /* MasterViewFavoriteCollectionViewCell.swift in Sources */,
 				088A11532CE5A08D00EC1002 /* MiTunesAPI.swift in Sources */,
 				088A114F2CE59C7000EC1002 /* Utils+Ext.swift in Sources */,
 				08ADB60A2CE5C33E00205863 /* CoreDataStack.swift in Sources */,
@@ -478,6 +483,7 @@
 				088A11662CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */,
 				08855C9C2CE6F59E00580AAF /* MasterViewDataModel.swift in Sources */,
 				08ADB60E2CE5C73800205863 /* MasterViewModel.swift in Sources */,
+				08855CB02CE8FD0C00580AAF /* MasterViewFavoriteCollectionViewCell.swift in Sources */,
 				08855CAA2CE72B3600580AAF /* DetailViewModel.swift in Sources */,
 				088A115D2CE5A61B00EC1002 /* iTunesServiceAPI.swift in Sources */,
 				088A114A2CE59C4000EC1002 /* Optional+Ext.swift in Sources */,

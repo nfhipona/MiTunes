@@ -119,18 +119,7 @@ final class MasterViewCollectionViewCell: UICollectionViewCell {
         priceLabel.text = "Price: \(media.trackPrice.currency)"
         genreLabel.text = "Genre: \(media.primaryGenreName.unwrapped)"
         favoriteButton.isSelected = media.isFavorite
-
-        guard let imageURL = URL(string: media.artworkUrl100.unwrapped)
-        else { return }
-        let placeholderImage = UIImage(systemName: "movieclapper.fill")?
-            .withRenderingMode(.alwaysTemplate)
-        placeholderImage?.withTintColor(.blue)
-        imageView
-            .af
-            .setImage(
-                withURL: imageURL,
-                placeholderImage: placeholderImage
-            )
+        imageView.setImageURL(media.artworkUrl100.unwrapped)
     }
 }
 
@@ -207,5 +196,6 @@ extension MasterViewCollectionViewCell {
                 isFavorite: isFavorite
             )
         favoriteButton.isSelected = isFavorite
+        model.updateNotifier.send(.favorite(media))
     }
 }

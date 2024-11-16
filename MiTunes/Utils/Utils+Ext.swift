@@ -5,6 +5,7 @@
 //  Created by Neil Francis Ramirez Hipona on 11/14/24.
 //
 
+import AlamofireImage
 import Foundation
 import UIKit
 
@@ -54,5 +55,24 @@ extension Double {
 extension Date {
     var readableDisplay: String {
         dateFormatter.string(from: self)
+    }
+}
+
+// MARK: - UIImageView
+
+extension UIImageView {
+    func setImageURL(_ url: String) {
+        let placeholderImage = UIImage(systemName: "movieclapper.fill")?
+            .withRenderingMode(.alwaysTemplate)
+        placeholderImage?.withTintColor(.blue)
+
+        if let imageURL = URL(string: url) {
+            af.setImage(
+                withURL: imageURL,
+                placeholderImage: placeholderImage
+            )
+        } else {
+            image = placeholderImage
+        }
     }
 }

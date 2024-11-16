@@ -58,7 +58,11 @@ extension CoreDataStack {
     // Add a convenience method to commit changes to the store.
     func saveContext(callback: CallbackHandler? = nil) {
         // Verify that the context has uncommitted changes.
-        guard viewContext.hasChanges else { return }
+        guard viewContext.hasChanges 
+        else {
+            callback?(nil)
+            return
+        }
 
         do {
             // Attempt to save changes.

@@ -18,6 +18,15 @@ extension MasterViewController {
 final class MasterViewController: UIViewController {
     private let viewModel: MasterViewModel
 
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar(frame: .zero)
+        searchBar.delegate = self
+        searchBar.placeholder = "Search media here ..."
+        searchBar.barStyle = .default
+        searchBar.showsCancelButton = true
+        return searchBar.translatesAutoresizingMask()
+    }()
+
     private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = MasterViewCollectionViewCell.canvasSize
@@ -77,6 +86,8 @@ final class MasterViewController: UIViewController {
         makeFavoriteDataSource()
     }()
 
+    private var keyboardTimer: Timer?
+
     init(viewModel: MasterViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: .main)
@@ -90,6 +101,7 @@ final class MasterViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
+        setupNavigation()
         setupViews()
         setupCollectionViews()
         setupBindings()
@@ -107,6 +119,11 @@ final class MasterViewController: UIViewController {
 
 private
 extension MasterViewController {
+    func setupNavigation() {
+        navigationItem.titleView = searchBar
+        navigationItem.hidesSearchBarWhenScrolling = true
+    }
+
     func setupViews() {
         view.backgroundColor = .white
         collectionView.delegate = self
@@ -232,6 +249,51 @@ extension MasterViewController: UICollectionViewDelegate {
         } else {
             viewModel.didSelectItem(at: indexPath)
         }
+    }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension MasterViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        keyboardTimer?.invalidate()
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        keyboardTimer?.invalidate()
+        keyboardTimer = Timer.scheduledTimer(
+            withTimeInterval: 2,
+            repeats: false,
+            block: { [weak self] timer in
+                timer.invalidate()
+                guard let self,
+                      let query = searchBar.text,
+                      query.count > 3
+                else { return }
+                viewModel.loadSearch(query: query)
+            }
+        )
+        let query = searchBar.text.unwrapped
+        if query.isEmpty {
+            viewModel.preLoadData()
+        } else if query.count > 3 {
+            keyboardTimer?.fireDate = Date().addingTimeInterval(1)
+        }
+
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        keyboardTimer?.invalidate()
+        guard let query = searchBar.text, query.count > 3 else { return }
+        viewModel.loadSearch(query: query)
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        searchBar.resignFirstResponder()
+        keyboardTimer?.invalidate()
+        viewModel.preLoadData()
     }
 }
 

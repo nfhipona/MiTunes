@@ -8,9 +8,23 @@
 import Foundation
 
 final class AppConfiguration {
+    enum Environment: String {
+        case development
+        case production
+
+        init?(rawValue: String?) {
+            switch rawValue.unwrapped.lowercased() {
+            case "release":
+                self = .production
+            default:
+                self = .development
+            }
+        }
+    }
+
     static let shared = AppConfiguration()
 
-    let environment: String
+    let environment: Environment
     let bundleName: String
     let bundleIdentifier: String
     let version: String
@@ -19,7 +33,9 @@ final class AppConfiguration {
 
     init() {
         let infoDictionary = Bundle.main.infoDictionary.unwrapped
-        environment = (infoDictionary[.environment] as? String).unwrapped
+        environment = Environment(
+            rawValue: infoDictionary[.environment] as? String
+        ).unwrapped
         bundleName = (infoDictionary[.bundleName] as? String).unwrapped
         bundleIdentifier = (infoDictionary[.bundleIdentifier] as? String).unwrapped
         version = (infoDictionary[.version] as? String).unwrapped
@@ -28,7 +44,7 @@ final class AppConfiguration {
     }
 
     func log() {
-        print(
+        debugLog(
             """
             \n
                 Environment: \(environment)

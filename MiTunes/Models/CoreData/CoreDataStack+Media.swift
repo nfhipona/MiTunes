@@ -71,7 +71,7 @@ extension CoreDataStack {
             let results: [Media] = try viewContext.fetch(request)
             return results
         } catch {
-            print("fetchAllFavoriteMedia error:", error)
+            debugLog("fetchAllFavoriteMedia error:", error)
         }
         return []
     }
@@ -83,7 +83,7 @@ extension CoreDataStack {
             let results: [Media] = try viewContext.fetch(request)
             return results
         } catch {
-            print("fetchAllMedia error:", error)
+            debugLog("fetchAllMedia error:", error)
         }
         return []
     }

@@ -46,3 +46,7 @@ extension Dictionary: Defaultable {
 extension Array: Defaultable {
     static var defaultValue: Array<Element> { [] }
 }
+
+extension AppConfiguration.Environment: Defaultable {
+    static var defaultValue: AppConfiguration.Environment { .development }
+}

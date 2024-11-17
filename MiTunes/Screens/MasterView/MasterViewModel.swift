@@ -66,7 +66,7 @@ final class MasterViewModel: ObservableObject {
             }
         } receiveValue: { [weak self] result in
             guard let self else { return }
-            print("Search Result:", result)
+            debugLog("Search Result:", result)
             processResult(result: result)
         }
         .store(in: &cancellables)
@@ -85,7 +85,7 @@ extension MasterViewModel {
         CoreDataStack.shared.saveContext { [weak self] error in
             guard let self else { return }
             if let error {
-                print("CoreDataStack.shared.saveContext:", error)
+                debugLog("CoreDataStack.shared.saveContext:", error)
             }
             loadingNotifier.send(.stopLoading)
         }
@@ -139,7 +139,7 @@ extension MasterViewModel {
     func preLoadData() {
         loadingNotifier.send(.startLoading)
         let media = CoreDataStack.shared.fetchAllMedia()
-        print("Master Data: \(media.count)")
+        debugLog("Master Data: \(media.count)")
         reloadFavorites()
 
         if media.isEmpty {
@@ -153,7 +153,7 @@ extension MasterViewModel {
     func reloadFavorites() {
         let favoriteMedia = CoreDataStack.shared.fetchAllFavoriteMedia()
         makeFavoriteSnapshot(media: favoriteMedia)
-        print("Favorite Data: \(favoriteMedia.count)")
+        debugLog("Favorite Data: \(favoriteMedia.count)")
     }
 
     func didSelectItem(at indexPath: IndexPath)  {

@@ -76,3 +76,8 @@ extension UIImageView {
         }
     }
 }
+
+func debugLog(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    guard AppConfiguration.shared.environment == .development else { return }
+    print(items, separator: separator, terminator: terminator)
+}

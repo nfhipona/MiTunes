@@ -24,6 +24,16 @@ extension MiTunesAPI {
         let name: String
         let value: String
     }
+
+    static let acceptJSON = Header(
+        name: "accept", 
+        value: "application/json"
+    )
+    
+    static let contentTypeJSON = Header(
+        name: "content-type",
+        value: "application/json"
+    )
 }
 
 final class MiTunesAPI {

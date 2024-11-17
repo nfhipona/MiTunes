@@ -29,8 +29,9 @@ final class CoreDataStack: ObservableObject {
 }
 
 extension CoreDataStack {
+    static let persistentContainerName = "MiTunes"
     static let stubMiTunes: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "MiTunes")
+        let container = NSPersistentContainer(name: persistentContainerName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 debugLog("Unresolved error \(error), \(error.userInfo)")
@@ -71,7 +72,6 @@ extension CoreDataStack {
         callback: CallbackHandler? = nil
     ) {
         viewContext.insert(model)
-
         if shouldSave {
             saveContext(callback: callback)
         }
@@ -79,9 +79,12 @@ extension CoreDataStack {
 
     func delete(
         item: NSManagedObject,
+        shouldSave: Bool = false,
         callback: CallbackHandler? = nil
     ) {
         viewContext.delete(item)
-        saveContext(callback: callback)
+        if shouldSave {
+            saveContext(callback: callback)
+        }
     }
 }

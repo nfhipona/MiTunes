@@ -5,6 +5,7 @@
 //  Created by Neil Francis Ramirez Hipona on 11/14/24.
 //
 
+import Alamofire
 import AlamofireImage
 import Foundation
 import UIKit

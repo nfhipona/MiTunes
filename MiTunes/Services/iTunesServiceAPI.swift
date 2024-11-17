@@ -42,8 +42,8 @@ enum iTunesService: MiTunesAPIProtocol {
         switch self {
         case .search:
             return [
-                MiTunesAPI.Header(name: "accept", value: "application/json"),
-                MiTunesAPI.Header(name: "content-type", value: "application/json")
+                MiTunesAPI.acceptJSON,
+                MiTunesAPI.contentTypeJSON
             ]
         }
     }

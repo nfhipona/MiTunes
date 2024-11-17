@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0883083C2CEA1DF4003E0B18 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883083B2CEA1DF4003E0B18 /* MockURLProtocol.swift */; };
+		0883083D2CEA27A7003E0B18 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855CA02CE7005200580AAF /* Constants.swift */; };
+		0883083E2CEA27B8003E0B18 /* CoreDataStack+Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C922CE5D27C00580AAF /* CoreDataStack+Media.swift */; };
+		0883083F2CEA2871003E0B18 /* MiTunes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 088A11112CE595B600EC1002 /* MiTunes.xcdatamodeld */; };
+		088308492CEA294B003E0B18 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08ADB6092CE5C33E00205863 /* CoreDataStack.swift */; };
+		0883084D2CEA2ABC003E0B18 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0883084C2CEA2ABC003E0B18 /* Alamofire */; };
+		088308502CEA2EAE003E0B18 /* Media+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883084E2CEA2EAE003E0B18 /* Media+CoreDataClass.swift */; };
+		088308512CEA2EAE003E0B18 /* Media+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883084E2CEA2EAE003E0B18 /* Media+CoreDataClass.swift */; };
+		088308522CEA2EAE003E0B18 /* Media+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883084E2CEA2EAE003E0B18 /* Media+CoreDataClass.swift */; };
+		088308532CEA2EAE003E0B18 /* Media+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883084F2CEA2EAE003E0B18 /* Media+CoreDataProperties.swift */; };
+		088308542CEA2EAE003E0B18 /* Media+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883084F2CEA2EAE003E0B18 /* Media+CoreDataProperties.swift */; };
+		088308552CEA2EAE003E0B18 /* Media+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0883084F2CEA2EAE003E0B18 /* Media+CoreDataProperties.swift */; };
+		088308572CEA2EEB003E0B18 /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088308562CEA2EEB003E0B18 /* CoreDataStackTests.swift */; };
 		08855C932CE5D27C00580AAF /* CoreDataStack+Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C922CE5D27C00580AAF /* CoreDataStack+Media.swift */; };
 		08855C942CE5D27C00580AAF /* CoreDataStack+Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C922CE5D27C00580AAF /* CoreDataStack+Media.swift */; };
 		08855C972CE5D6B200580AAF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08855C962CE5D6B200580AAF /* LoadingView.swift */; };
@@ -87,6 +100,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0883083B2CEA1DF4003E0B18 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		0883084E2CEA2EAE003E0B18 /* Media+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Media+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0883084F2CEA2EAE003E0B18 /* Media+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Media+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		088308562CEA2EEB003E0B18 /* CoreDataStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
 		08855C922CE5D27C00580AAF /* CoreDataStack+Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreDataStack+Media.swift"; path = "MiTunes/Models/CoreData/CoreDataStack+Media.swift"; sourceTree = SOURCE_ROOT; };
 		08855C962CE5D6B200580AAF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		08855C9A2CE6F59E00580AAF /* MasterViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewDataModel.swift; sourceTree = "<group>"; };
@@ -128,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08855CAD2CE7436000580AAF /* AlamofireImage in Frameworks */,
+				0883084D2CEA2ABC003E0B18 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +166,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0883083A2CEA1DEB003E0B18 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0883083B2CEA1DF4003E0B18 /* MockURLProtocol.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0883084B2CEA2ABC003E0B18 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		08855C952CE5D69700580AAF /* MasterView */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +226,7 @@
 				088A11212CE595B900EC1002 /* MiTunesTests */,
 				088A112B2CE595B900EC1002 /* MiTunesUITests */,
 				088A11062CE595B600EC1002 /* Products */,
+				0883084B2CEA2ABC003E0B18 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,7 +261,9 @@
 		088A11212CE595B900EC1002 /* MiTunesTests */ = {
 			isa = PBXGroup;
 			children = (
+				0883083A2CEA1DEB003E0B18 /* Helpers */,
 				088A11222CE595B900EC1002 /* MiTunesTests.swift */,
+				088308562CEA2EEB003E0B18 /* CoreDataStackTests.swift */,
 			);
 			path = MiTunesTests;
 			sourceTree = "<group>";
@@ -294,6 +330,8 @@
 		08ADB6172CE5D12400205863 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				0883084E2CEA2EAE003E0B18 /* Media+CoreDataClass.swift */,
+				0883084F2CEA2EAE003E0B18 /* Media+CoreDataProperties.swift */,
 				08855C922CE5D27C00580AAF /* CoreDataStack+Media.swift */,
 			);
 			path = CoreData;
@@ -317,6 +355,7 @@
 			name = MiTunes;
 			packageProductDependencies = (
 				08855CAC2CE7436000580AAF /* AlamofireImage */,
+				0883084C2CEA2ABC003E0B18 /* Alamofire */,
 			);
 			productName = MiTunes;
 			productReference = 088A11052CE595B600EC1002 /* MiTunes.app */;
@@ -392,6 +431,7 @@
 			mainGroup = 088A10FC2CE595B600EC1002;
 			packageReferences = (
 				08855CAB2CE7436000580AAF /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				0883084A2CEA2AA8003E0B18 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 088A11062CE595B600EC1002 /* Products */;
 			projectDirPath = "";
@@ -441,6 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				088308502CEA2EAE003E0B18 /* Media+CoreDataClass.swift in Sources */,
 				08855C932CE5D27C00580AAF /* CoreDataStack+Media.swift in Sources */,
 				08855CA12CE7005200580AAF /* Constants.swift in Sources */,
 				08ADB60D2CE5C73800205863 /* MasterViewModel.swift in Sources */,
@@ -460,6 +501,7 @@
 				088A115C2CE5A61B00EC1002 /* iTunesServiceAPI.swift in Sources */,
 				08855CA92CE72B3600580AAF /* DetailViewModel.swift in Sources */,
 				088A11652CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */,
+				088308532CEA2EAE003E0B18 /* Media+CoreDataProperties.swift in Sources */,
 				088A11092CE595B600EC1002 /* AppDelegate.swift in Sources */,
 				088A110B2CE595B600EC1002 /* SceneDelegate.swift in Sources */,
 				088A11492CE59C3B00EC1002 /* Optional+Ext.swift in Sources */,
@@ -475,8 +517,11 @@
 				08855C942CE5D27C00580AAF /* CoreDataStack+Media.swift in Sources */,
 				088A11622CE5A9AC00EC1002 /* iTunesSearchResult.swift in Sources */,
 				088A11542CE5A08D00EC1002 /* MiTunesAPI.swift in Sources */,
+				088308542CEA2EAE003E0B18 /* Media+CoreDataProperties.swift in Sources */,
 				088A114D2CE59C4400EC1002 /* AppConfiguration.swift in Sources */,
+				088308572CEA2EEB003E0B18 /* CoreDataStackTests.swift in Sources */,
 				088A11592CE5A16400EC1002 /* MiTunesAPIProtocol.swift in Sources */,
+				0883083C2CEA1DF4003E0B18 /* MockURLProtocol.swift in Sources */,
 				088A11232CE595B900EC1002 /* MiTunesTests.swift in Sources */,
 				08855CA22CE7005200580AAF /* Constants.swift in Sources */,
 				08ADB60B2CE5C33E00205863 /* CoreDataStack.swift in Sources */,
@@ -485,10 +530,12 @@
 				08ADB60E2CE5C73800205863 /* MasterViewModel.swift in Sources */,
 				08855CB02CE8FD0C00580AAF /* MasterViewFavoriteCollectionViewCell.swift in Sources */,
 				08855CAA2CE72B3600580AAF /* DetailViewModel.swift in Sources */,
+				088308512CEA2EAE003E0B18 /* Media+CoreDataClass.swift in Sources */,
 				088A115D2CE5A61B00EC1002 /* iTunesServiceAPI.swift in Sources */,
 				088A114A2CE59C4000EC1002 /* Optional+Ext.swift in Sources */,
 				08855C982CE5D6B200580AAF /* LoadingView.swift in Sources */,
 				088A11502CE59C7000EC1002 /* Utils+Ext.swift in Sources */,
+				0883083F2CEA2871003E0B18 /* MiTunes.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,13 +543,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				088308522CEA2EAE003E0B18 /* Media+CoreDataClass.swift in Sources */,
+				088308492CEA294B003E0B18 /* CoreDataStack.swift in Sources */,
+				0883083E2CEA27B8003E0B18 /* CoreDataStack+Media.swift in Sources */,
 				088A11672CE5AAAA00EC1002 /* iTunesMedia.swift in Sources */,
+				0883083D2CEA27A7003E0B18 /* Constants.swift in Sources */,
 				088A115A2CE5A16400EC1002 /* MiTunesAPIProtocol.swift in Sources */,
 				088A11632CE5A9AC00EC1002 /* iTunesSearchResult.swift in Sources */,
 				088A112F2CE595B900EC1002 /* MiTunesUITestsLaunchTests.swift in Sources */,
 				088A11512CE59C7000EC1002 /* Utils+Ext.swift in Sources */,
 				088A11552CE5A08D00EC1002 /* MiTunesAPI.swift in Sources */,
 				088A115E2CE5A61B00EC1002 /* iTunesServiceAPI.swift in Sources */,
+				088308552CEA2EAE003E0B18 /* Media+CoreDataProperties.swift in Sources */,
 				088A112D2CE595B900EC1002 /* MiTunesUITests.swift in Sources */,
 				088A114C2CE59C4300EC1002 /* AppConfiguration.swift in Sources */,
 				088A114B2CE59C4000EC1002 /* Optional+Ext.swift in Sources */,
@@ -831,6 +883,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0883084A2CEA2AA8003E0B18 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.1;
+			};
+		};
 		08855CAB2CE7436000580AAF /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/AlamofireImage";
@@ -842,6 +902,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0883084C2CEA2ABC003E0B18 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0883084A2CEA2AA8003E0B18 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		08855CAC2CE7436000580AAF /* AlamofireImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 08855CAB2CE7436000580AAF /* XCRemoteSwiftPackageReference "AlamofireImage" */;

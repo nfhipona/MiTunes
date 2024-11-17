@@ -1,6 +1,10 @@
 # My iTunes
 
-Demo [Video Link](https://youtube.com/shorts/Y0YhO-10hME?feature=share)
+Demo [Video Link](https://youtu.be/kI8_WwBnhIc)
+
+![Simulator Screenshot - iPhone 15 Pro - 2024-11-18 at 00 36 59](https://github.com/user-attachments/assets/c80aa347-3a51-454c-a888-d3815f76963b)
+![Simulator Screenshot - iPhone 15 Pro - 2024-11-18 at 00 36 51](https://github.com/user-attachments/assets/ef5e4ec3-da05-432b-af91-91ca6f0e54c8)
+
 
 ## Name
 

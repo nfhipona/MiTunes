@@ -90,6 +90,7 @@ final class MiTunesAPI {
 
         return session
             .dataTaskPublisher(for: request)
+            .subscribe(on: DispatchQueue.global(qos: .background))
             .retry(retry)
             .map(\.data)
             .decode(type: T.self, decoder: decoder)

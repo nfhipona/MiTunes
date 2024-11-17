@@ -119,7 +119,16 @@ final class MasterViewCollectionViewCell: UICollectionViewCell {
         priceLabel.text = "Price: \(media.trackPrice.currency)"
         genreLabel.text = "Genre: \(media.primaryGenreName.unwrapped)"
         favoriteButton.isSelected = media.isFavorite
-        imageView.setImageURL(media.artworkUrl100.unwrapped)
+
+        let placeholderImage = UIImage(systemName: "movieclapper.fill")
+        if let imageURL = URL(string: media.artworkUrl100.unwrapped) {
+            imageView.af.setImage(
+                withURL: imageURL,
+                placeholderImage: placeholderImage
+            )
+        } else {
+            imageView.image = placeholderImage
+        }
     }
 }
 

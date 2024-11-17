@@ -12,6 +12,7 @@ extension MasterViewController {
     private enum Constants {
         static let spacing: CGFloat = 8
         static let favoriteCollectionViewHeight: CGFloat = 100
+        static let queryCharCount: Int = 3
     }
 }
 
@@ -111,7 +112,14 @@ final class MasterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        viewModel.preLoadData()
+        if !searchBar.text.unwrapped.isEmpty {
+            viewModel.loadSearch(
+                query: searchBar.text.unwrapped
+            )
+            viewModel.reloadFavorites()
+        } else {
+            viewModel.preLoadData()
+        }
     }
 }
 
@@ -268,7 +276,7 @@ extension MasterViewController: UISearchBarDelegate {
                 timer.invalidate()
                 guard let self,
                       let query = searchBar.text,
-                      query.count > 3
+                      query.count >= Constants.queryCharCount
                 else { return }
                 viewModel.loadSearch(query: query)
             }
@@ -276,7 +284,7 @@ extension MasterViewController: UISearchBarDelegate {
         let query = searchBar.text.unwrapped
         if query.isEmpty {
             viewModel.preLoadData()
-        } else if query.count > 3 {
+        } else if query.count >= Constants.queryCharCount {
             keyboardTimer?.fireDate = Date().addingTimeInterval(1)
         }
 
@@ -285,7 +293,10 @@ extension MasterViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         keyboardTimer?.invalidate()
-        guard let query = searchBar.text, query.count > 3 else { return }
+        guard
+            let query = searchBar.text,
+            query.count >= Constants.queryCharCount
+        else { return }
         viewModel.loadSearch(query: query)
     }
 

@@ -20,12 +20,12 @@ extension Media {
     @NSManaged public var artworkUrl30: String?
     @NSManaged public var artworkUrl60: String?
     @NSManaged public var artworkUrl100: String?
-    @NSManaged public var collectionArtistId: Int16
+    @NSManaged public var collectionArtistId: Int64
     @NSManaged public var collectionArtistViewUrl: String?
     @NSManaged public var collectionCensoredName: String?
     @NSManaged public var collectionExplicitness: String?
     @NSManaged public var collectionHdPrice: Double
-    @NSManaged public var collectionId: Int16
+    @NSManaged public var collectionId: Int64
     @NSManaged public var collectionName: String?
     @NSManaged public var collectionPrice: Double
     @NSManaged public var collectionViewUrl: String?
@@ -43,16 +43,16 @@ extension Media {
     @NSManaged public var primaryGenreName: String?
     @NSManaged public var releaseDate: String?
     @NSManaged public var trackCensoredName: String?
-    @NSManaged public var trackCount: Int16
+    @NSManaged public var trackCount: Int64
     @NSManaged public var trackExplicitness: String?
     @NSManaged public var trackHdPrice: Double
     @NSManaged public var trackHdRentalPrice: Double
-    @NSManaged public var trackId: Int16
+    @NSManaged public var trackId: Int64
     @NSManaged public var trackName: String?
-    @NSManaged public var trackNumber: Int16
+    @NSManaged public var trackNumber: Int64
     @NSManaged public var trackPrice: Double
     @NSManaged public var trackRentalPrice: Double
-    @NSManaged public var trackTimeMillis: Int16
+    @NSManaged public var trackTimeMillis: Int64
     @NSManaged public var trackViewUrl: String?
     @NSManaged public var wrapperType: String?
 

@@ -72,6 +72,7 @@ extension CoreDataStack {
         callback: CallbackHandler? = nil
     ) {
         viewContext.insert(model)
+
         if shouldSave {
             saveContext(callback: callback)
         }

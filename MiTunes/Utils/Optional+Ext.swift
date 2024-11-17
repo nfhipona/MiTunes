@@ -31,8 +31,8 @@ extension Int: Defaultable {
     static var defaultValue: Int { 0 }
 }
 
-extension Int16: Defaultable {
-    static var defaultValue: Int16 { 0 }
+extension Int64: Defaultable {
+    static var defaultValue: Int64 { 0 }
 }
 
 extension Bool: Defaultable {

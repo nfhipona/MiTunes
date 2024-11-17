@@ -284,21 +284,19 @@ extension DetailViewController {
 
         longDescriptionLabelTopConstraint.isActive = !media.mediaShortDescription.unwrapped.isEmpty
 
-        CoreDataStack
-            .shared
-            .setMediaLastVisit(for: media)
-
-        guard let imageURL = URL(string: media.artworkUrl100.unwrapped)
-        else { return }
-        let placeholderImage = UIImage(systemName: "movieclapper.fill")?
-            .withRenderingMode(.alwaysTemplate)
-        placeholderImage?.withTintColor(.blue)
-        imageView
-            .af
-            .setImage(
+        let placeholderImage = UIImage(systemName: "movieclapper.fill")
+        if let imageURL = URL(string: media.artworkUrl100.unwrapped) {
+            imageView.af.setImage(
                 withURL: imageURL,
                 placeholderImage: placeholderImage
             )
+        } else {
+            imageView.image = placeholderImage
+        }
+
+        CoreDataStack
+            .shared
+            .setMediaLastVisit(for: media)
     }
 
     @objc func favoriteButtonAction() {

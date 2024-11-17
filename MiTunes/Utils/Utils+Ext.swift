@@ -5,8 +5,6 @@
 //  Created by Neil Francis Ramirez Hipona on 11/14/24.
 //
 
-import Alamofire
-import AlamofireImage
 import Foundation
 import UIKit
 
@@ -23,8 +21,8 @@ extension [String: Any] {
 
 extension Int {
     /// Converts Int to Int16 data type
-    func toInt16() -> Int16 {
-        Int16(exactly: self).unwrapped
+    func toInt64() -> Int64 {
+        Int64(exactly: self).unwrapped
     }
 }
 
@@ -59,24 +57,7 @@ extension Date {
     }
 }
 
-// MARK: - UIImageView
-
-extension UIImageView {
-    func setImageURL(_ url: String) {
-        let placeholderImage = UIImage(systemName: "movieclapper.fill")?
-            .withRenderingMode(.alwaysTemplate)
-        placeholderImage?.withTintColor(.blue)
-
-        if let imageURL = URL(string: url) {
-            af.setImage(
-                withURL: imageURL,
-                placeholderImage: placeholderImage
-            )
-        } else {
-            image = placeholderImage
-        }
-    }
-}
+// MARK: - Logger
 
 func debugLog(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     guard AppConfiguration.shared.environment == .development else { return }

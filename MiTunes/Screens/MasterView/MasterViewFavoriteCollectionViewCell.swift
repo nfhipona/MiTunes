@@ -51,7 +51,15 @@ final class MasterViewFavoriteCollectionViewCell: UICollectionViewCell {
         self.model = model
 
         let media = model.media
-        imageView.setImageURL(media.artworkUrl100.unwrapped)
+        let placeholderImage = UIImage(systemName: "movieclapper.fill")
+        if let imageURL = URL(string: media.artworkUrl100.unwrapped) {
+            imageView.af.setImage(
+                withURL: imageURL,
+                placeholderImage: placeholderImage
+            )
+        } else {
+            imageView.image = placeholderImage
+        }
     }
 }
 

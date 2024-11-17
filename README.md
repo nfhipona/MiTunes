@@ -1,5 +1,7 @@
 # My iTunes
 
+Demo [Video Link](https://youtube.com/shorts/Y0YhO-10hME?feature=share)
+
 ## Name
 
 Sample app that showcases fetching and loading data from url `https://itunes.apple.com/search?term=star&country=au&media=movie` and saving it to core data.
